@@ -18,6 +18,8 @@ type TodoStore = {
   deleteTodo: (id: number) => void;
 };
 
+console.log("process.env.NEXT_PUBLIC_VERCEL_URL", process.env.NEXT_PUBLIC_VERCEL_URL);
+console.log("process.env.VERCEL_URL", process.env.VERCEL_URL);
 const URL = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}/api`
   : "http://localhost:3000/api";
