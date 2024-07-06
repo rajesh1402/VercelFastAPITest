@@ -18,14 +18,15 @@ type TodoStore = {
   deleteTodo: (id: number) => void;
 };
 
-const URL = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`
+const URL = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}/api`
   : "http://localhost:3000/api";
 
 export const useStore = create<TodoStore>((set) => ({
   todos: [],
   fetchTodos: async () => {
     try {
+      console.log("URL is ", URL);
       const response = await fetch(`${URL}/todos`);
       const todos = await response.json();
       set({ todos });
@@ -35,6 +36,7 @@ export const useStore = create<TodoStore>((set) => ({
   },
   addTodo: async (todo) => {
     try {
+      console.log("URL is ", URL);
       const response = await fetch(`${URL}/todos`, {
         method: "POST",
         headers: {
